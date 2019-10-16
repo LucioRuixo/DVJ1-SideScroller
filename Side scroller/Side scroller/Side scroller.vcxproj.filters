@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de origen">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Archivos de recursos">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Archivos de origen\Game">
+      <UniqueIdentifier>{48f38419-aa18-4b27-adb2-7f2e8e7aba99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Game">
+      <UniqueIdentifier>{b176dac2-87a5-4af4-b78b-c7ec1a6ec23b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Game\States">
+      <UniqueIdentifier>{bfc715c2-6758-4f0c-a4be-71d96ab08610}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Game\Elements">
+      <UniqueIdentifier>{f8a57a34-b4e1-49c7-abe1-e613a88ef600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Game\States">
+      <UniqueIdentifier>{b94c3634-09ce-43b1-8cf5-53a8c0c5d3b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Game\Elements">
+      <UniqueIdentifier>{6dfa80f9-3d30-4dcb-927f-0c997f4e2c79}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lib\raylib-2.5.0-Win32-msvc15\include\raylib.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\game.h">
+      <Filter>Archivos de encabezado\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\States\gameplay.h">
+      <Filter>Archivos de encabezado\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\States\main_menu.h">
+      <Filter>Archivos de encabezado\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Elements\buttons.h">
+      <Filter>Archivos de encabezado\Game\Elements</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Elements\buttons.cpp">
+      <Filter>Archivos de origen\Game\Elements</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
