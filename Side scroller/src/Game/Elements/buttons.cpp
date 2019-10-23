@@ -1,5 +1,7 @@
 #include "buttons.h"
 
+#include "raylib.h"
+
 #include "game.h"
 
 namespace game
@@ -12,70 +14,69 @@ Button pause;
 Button play;
 Button return_;
 
-float buttonsX;
-
 namespace main_menu
 {
-	void InitializeButtons()
-	{
-		buttonsX = static_cast<float>(screenWidth) / 6.0f;
+float buttonsX;
 
-		exit.function = Function::ExitGame;
-		exit.rec.width = 4.0f * screenWidthScalar;
-		exit.rec.height = 4.0f * screenHeightScalar;
-		exit.rec.x = buttonsX;
-		exit.rec.y = (static_cast<float>(screenHeight) / 3.0f) * 2 + 40;
-		exit.text = "Exit";
+void InitializeButtons()
+{
+	buttonsX = static_cast<float>(screenWidth) / 6.0f;
 
-		fullScreen_.function = Function::ActivateFullscreen;
-		fullScreen_.rec.width = 10.0f * screenWidthScalar;
-		fullScreen_.rec.height = 4.0f * screenHeightScalar;
-		fullScreen_.rec.x = screenWidth - fullScreen_.rec.width - 1.0f * screenWidthScalar;
-		fullScreen_.rec.y = 1.0f * screenHeightScalar;
-		fullScreen_.text = "Fullscreen";
-		cout << "Fullscreen: width " << fullScreen_.rec.width;
+	exit.function = Function::ExitGame;
+	exit.rec.width = 4.0f * screenWidthScalar;
+	exit.rec.height = 4.0f * screenHeightScalar;
+	exit.rec.x = buttonsX;
+	exit.rec.y = (static_cast<float>(screenHeight) / 3.0f) * 2 + 40;
+	exit.text = "Exit";
 
-		play.function = Function::ChangeState;
-		play.state = GameState::Gameplay;
-		play.rec.width = 5.0f * screenWidthScalar;
-		play.rec.height = 4.0f * screenHeightScalar;
-		play.rec.x = buttonsX;
-		play.rec.y = (static_cast<float>(screenHeight) / 3.0f) * 2;
-		play.text = "PLAY";
-	}
+	fullScreen_.function = Function::ActivateFullscreen;
+	fullScreen_.rec.width = 10.0f * screenWidthScalar;
+	fullScreen_.rec.height = 4.0f * screenHeightScalar;
+	fullScreen_.rec.x = screenWidth - fullScreen_.rec.width - 1.0f * screenWidthScalar;
+	fullScreen_.rec.y = 1.0f * screenHeightScalar;
+	fullScreen_.text = "Fullscreen";
+
+	play.function = Function::ChangeState;
+	play.state = GameState::Gameplay;
+	play.rec.width = 5.0f * screenWidthScalar;
+	play.rec.height = 4.0f * screenHeightScalar;
+	play.rec.x = buttonsX;
+	play.rec.y = (static_cast<float>(screenHeight) / 3.0f) * 2;
+	play.text = "PLAY";
+}
 }
 
 namespace game_over
 {
-	void InitializeButtons()
-	{
-		return_.function = Function::ChangeState;
-		return_.state = GameState::MainMenu;
-		return_.rec.width = 9.0f * screenWidthScalar;
-		return_.rec.height = 3.0f * screenHeightScalar;
-		return_.rec.x = 1.0f * screenWidthScalar;
-		return_.rec.y = 1.0f * screenHeightScalar;
-		return_.text = "< Return";
-	}
+void InitializeButtons()
+{
+	return_.function = Function::ChangeState;
+	return_.state = GameState::MainMenu;
+	return_.rec.width = 9.0f * screenWidthScalar;
+	return_.rec.height = 3.0f * screenHeightScalar;
+	return_.rec.x = 1.0f * screenWidthScalar;
+	return_.rec.y = 1.0f * screenHeightScalar;
+	return_.text = "< Return";
+}
 }
 
-void UpdateButton(Button &button)
+void Update(Button &button)
 {
 	if (CursorOverButton(button))
 	{
 		button.cursorOverButton = true;
 
-		CheckButtonPressing(button);
+		CheckPressing(button);
 	}
 	else
 		button.cursorOverButton = false;
 }
 
-void CheckButtonPressing(Button button)
+void CheckPressing(Button button)
 {
 	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 	{
-		PlaySound(buttonSFX);
+		//PlaySound(buttonSFX);
 
 		switch (button.function)
 		{
@@ -103,7 +104,7 @@ void CheckButtonPressing(Button button)
 	}
 }
 
-void DrawButton(Button button)
+void Draw(Button button)
 {
 	if (button.cursorOverButton)
 	{

@@ -16,17 +16,7 @@ enum Function
 	ExitGame,
 };
 
-struct GeneralButton
-{
-	Function function;
-	Rectangle rec;
-
-	const char* text;
-
-	bool cursorOverButton;
-};
-
-struct StateChangerButton
+struct Button
 {
 	Function function;
 	GameState state;
@@ -37,32 +27,27 @@ struct StateChangerButton
 	bool cursorOverButton;
 };
 
-extern GeneralButton continue_;
-extern GeneralButton exit;
-extern GeneralButton pause;
+extern Button continue_;
+extern Button exit;
+extern Button pause;
 
-extern StateChangerButton play;
-extern StateChangerButton return_;
+extern Button play;
+extern Button return_;
 
 namespace main_menu
 {
-	extern float buttonsX;
+extern float buttonsX;
 
-	void Initialize();
+void Initialize();
 }
 namespace gameplay
 {
-	void Initialize();
+void Initialize();
 }
 
-void CheckPressingGeneral(GeneralButton button);
-void UpdateGeneral(GeneralButton &button);
-void DrawGeneral(GeneralButton button);
-void CheckPressingStateChanger(StateChangerButton button);
-void UpdateStateChanger(StateChangerButton &button);
-
-void DrawGeneral(GeneralButton button);
-void DrawStateChanger(StateChangerButton button);
+void CheckPressing(Button button);
+void Update(Button &button);
+void Draw(Button button);
 
 bool CursorOverButton(Button button);
 }
