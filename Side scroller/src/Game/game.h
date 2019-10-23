@@ -11,7 +11,7 @@ extern const int WINDOW_HEIGHT;
 enum GameState
 {
 	MainMenu,
-	Credits,
+	CreditsScreen,
 	Gameplay,
 	GameOver
 };
@@ -27,10 +27,6 @@ extern int screenWidthScalar;
 extern int screenHeight;
 extern int screenHeightScalar;
 
-void Initialize();
-void Update();
-void Draw();
-void Close();
 void Execute();
 }
 

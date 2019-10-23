@@ -1,5 +1,11 @@
 #include "game.h"
 
+#include "States/main_menu.h"
+#include "States/credits_screen.h"
+#include "States/gameplay.h"
+#include "States/game_over.h"
+#include "Elements/UI/buttons.h"
+
 namespace game
 {
 const int WINDOW_WIDTH = 1280;
@@ -16,28 +22,91 @@ int screenWidthScalar;
 int screenHeight;
 int screenHeightScalar;
 
-void Initialize()
+static void Initialize()
 {
+	currentGameState = MainMenu;
+	cursor = GetMousePosition();
 
+	fullscreenOn = false;
+	gameShouldClose = false;
+
+	screenWidth = WINDOW_WIDTH;
+	screenWidthScalar = screenWidth / 100;
+	screenHeight = WINDOW_HEIGHT;
+	screenHeightScalar = screenHeight / 100;
+
+	InitWindow(screenWidth, screenHeight, "GRADIUS!");
+	buttons::main_menu::Initialize();
+	//credits_screen::Initialize();
+	//gameplay::Initialize();
 }
 
-void Update()
+static void Update()
 {
+	cursor = GetMousePosition();
 
+	switch (currentGameState)
+	{
+	case MainMenu:
+		main_menu::Update();
+		break;
+	case CreditsScreen:
+		credits_screen::Update();
+		break;
+	case Gameplay:
+		gameplay::Update();
+		break;
+	case GameOver:
+		game_over::Update();
+		break;
+	}
 }
 
-void Draw()
+static void Draw()
 {
+	BeginDrawing();
+	ClearBackground(BLACK);
 
+	switch (currentGameState)
+	{
+	case MainMenu:
+		main_menu::Draw();
+		break;
+	case CreditsScreen:
+		credits_screen::Draw();
+		break;
+	case Gameplay:
+		gameplay::Draw();
+		break;
+	case GameOver:
+		game_over::Draw();
+		break;
+	}
+
+	EndDrawing();
 }
 
-void Close()
+static void Close()
 {
-
+	CloseWindow();
 }
 
 void Execute()
 {
+	Initialize();
 
+	while (!gameShouldClose)
+	{
+		if (!WindowShouldClose())
+		{
+			Update();
+
+			Draw();
+		}
+		else
+			gameShouldClose = true;
+	}
+
+	Close();
 }
 }

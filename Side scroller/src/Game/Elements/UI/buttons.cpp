@@ -18,7 +18,7 @@ namespace main_menu
 {
 float buttonsX;
 
-void InitializeButtons()
+void Initialize()
 {
 	buttonsX = static_cast<float>(screenWidth) / 6.0f;
 
@@ -48,7 +48,7 @@ void InitializeButtons()
 
 namespace game_over
 {
-void InitializeButtons()
+void Initialize()
 {
 	return_.function = Function::ChangeState;
 	return_.state = GameState::MainMenu;
