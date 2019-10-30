@@ -42,6 +42,12 @@
     <ClInclude Include="..\src\Game\Elements\UI\buttons.h">
       <Filter>Game\Elements\UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Game\Elements\Gameplay\player.h">
+      <Filter>Game\Elements\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Elements\Gameplay\enemies.h">
+      <Filter>Game\Elements\Gameplay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp" />
@@ -62,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Game\States\main_menu.cpp">
       <Filter>Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Elements\Gameplay\player.cpp">
+      <Filter>Game\Elements\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

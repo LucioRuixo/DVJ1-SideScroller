@@ -9,6 +9,9 @@ namespace game
 {
 namespace buttons
 {
+const int TITLE_FONT_SIZE = 30;
+const int PARAGRAPH_FONT_SIZE = 20;
+
 enum Function
 {
 	ActivateFullscreen,
@@ -20,11 +23,13 @@ struct Button
 {
 	Function function;
 	GameState state;
-	Rectangle rec;
+	Rectangle rectangle;
 
 	const char* text;
 
 	bool cursorOverButton;
+
+	int fontSize;
 };
 
 extern Button continue_;
@@ -50,6 +55,9 @@ void Update(Button &button);
 void Draw(Button button);
 
 bool CursorOverButton(Button button);
+
+int CenteredX(Button button);
+int CenteredY(Button button);
 }
 }
 

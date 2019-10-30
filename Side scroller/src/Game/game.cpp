@@ -22,6 +22,8 @@ int screenWidthScalar;
 int screenHeight;
 int screenHeightScalar;
 
+float deltaTime;
+
 static void Initialize()
 {
 	currentGameState = MainMenu;
@@ -31,19 +33,23 @@ static void Initialize()
 	gameShouldClose = false;
 
 	screenWidth = WINDOW_WIDTH;
-	screenWidthScalar = screenWidth / 100;
+	screenWidthScalar = screenWidth / WINDOW_WIDTH;
 	screenHeight = WINDOW_HEIGHT;
-	screenHeightScalar = screenHeight / 100;
+	screenHeightScalar = screenHeight / WINDOW_HEIGHT;
+
+	deltaTime = GetFrameTime();
 
 	InitWindow(screenWidth, screenHeight, "GRADIUS!");
 	buttons::main_menu::Initialize();
 	//credits_screen::Initialize();
-	//gameplay::Initialize();
+	gameplay::Initialize();
 }
 
 static void Update()
 {
 	cursor = GetMousePosition();
+
+	deltaTime = GetFrameTime();
 
 	switch (currentGameState)
 	{

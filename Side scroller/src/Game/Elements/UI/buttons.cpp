@@ -23,26 +23,27 @@ void Initialize()
 	buttonsX = static_cast<float>(screenWidth) / 6.0f;
 
 	exit.function = Function::ExitGame;
-	exit.rec.width = 4.0f * screenWidthScalar;
-	exit.rec.height = 4.0f * screenHeightScalar;
-	exit.rec.x = buttonsX;
-	exit.rec.y = (static_cast<float>(screenHeight) / 3.0f) * 2 + 40;
+	exit.rectangle.width = 4.0f * screenWidthScalar;
+	exit.rectangle.height = 4.0f * screenHeightScalar;
+	exit.rectangle.x = buttonsX;
+	exit.rectangle.y = (static_cast<float>(screenHeight) / 3.0f) * 2 + 40;
 	exit.text = "Exit";
 
 	fullScreen_.function = Function::ActivateFullscreen;
-	fullScreen_.rec.width = 10.0f * screenWidthScalar;
-	fullScreen_.rec.height = 4.0f * screenHeightScalar;
-	fullScreen_.rec.x = screenWidth - fullScreen_.rec.width - 1.0f * screenWidthScalar;
-	fullScreen_.rec.y = 1.0f * screenHeightScalar;
+	fullScreen_.rectangle.width = 10.0f * screenWidthScalar;
+	fullScreen_.rectangle.height = 4.0f * screenHeightScalar;
+	fullScreen_.rectangle.x = screenWidth - fullScreen_.rectangle.width - 1.0f * screenWidthScalar;
+	fullScreen_.rectangle.y = 1.0f * screenHeightScalar;
 	fullScreen_.text = "Fullscreen";
 
 	play.function = Function::ChangeState;
 	play.state = GameState::Gameplay;
-	play.rec.width = 5.0f * screenWidthScalar;
-	play.rec.height = 4.0f * screenHeightScalar;
-	play.rec.x = buttonsX;
-	play.rec.y = (static_cast<float>(screenHeight) / 3.0f) * 2;
 	play.text = "PLAY";
+	play.fontSize = PARAGRAPH_FONT_SIZE;
+	play.rectangle.width = static_cast<float>(MeasureText(play.text, play.fontSize) * screenWidthScalar);
+	play.rectangle.height = static_cast<float>(play.fontSize * screenHeightScalar);
+	play.rectangle.x = static_cast<float>(CenteredX(play) * screenWidthScalar);
+	play.rectangle.y = static_cast<float>(CenteredY(play) * screenHeightScalar);
 }
 }
 
@@ -52,10 +53,10 @@ void Initialize()
 {
 	return_.function = Function::ChangeState;
 	return_.state = GameState::MainMenu;
-	return_.rec.width = 9.0f * screenWidthScalar;
-	return_.rec.height = 3.0f * screenHeightScalar;
-	return_.rec.x = 1.0f * screenWidthScalar;
-	return_.rec.y = 1.0f * screenHeightScalar;
+	return_.rectangle.width = 9.0f * screenWidthScalar;
+	return_.rectangle.height = 3.0f * screenHeightScalar;
+	return_.rectangle.x = 1.0f * screenWidthScalar;
+	return_.rectangle.y = 1.0f * screenHeightScalar;
 	return_.text = "< Return";
 }
 }
@@ -108,23 +109,37 @@ void Draw(Button button)
 {
 	if (button.cursorOverButton)
 	{
-		DrawRectangle(static_cast<int>(button.rec.x - 0.5f * screenWidthScalar), static_cast<int>(button.rec.y - 0.5f * screenHeightScalar), static_cast<int>(button.rec.width), static_cast<int>(button.rec.height), RAYWHITE);
-		DrawText(button.text, static_cast<int>(button.rec.x), static_cast<int>(button.rec.y), 20, BLACK);
+		DrawRectangle(static_cast<int>(button.rectangle.x - 0.5f * screenWidthScalar), static_cast<int>(button.rectangle.y - 0.5f * screenHeightScalar), static_cast<int>(button.rectangle.width), static_cast<int>(button.rectangle.height), RAYWHITE);
+		DrawText(button.text, static_cast<int>(button.rectangle.x), static_cast<int>(button.rectangle.y), 20, BLACK);
 	}
 	else
-		DrawText(button.text, static_cast<int>(button.rec.x), static_cast<int>(button.rec.y), 20, RAYWHITE);
+		DrawText(button.text, static_cast<int>(button.rectangle.x), static_cast<int>(button.rectangle.y), 20, RAYWHITE);
 }
 
 bool CursorOverButton(Button button)
 {
-	if ((cursor.x > button.rec.x && cursor.x < button.rec.x + button.rec.width)
+	if ((cursor.x > button.rectangle.x && cursor.x < button.rectangle.x + button.rectangle.width)
 		&&
-		(cursor.y > button.rec.y && cursor.y < button.rec.y + button.rec.height))
+		(cursor.y > button.rectangle.y && cursor.y < button.rectangle.y + button.rectangle.height))
 	{
 		return true;
 	}
 	else
 		return false;
+}
+
+int CenteredX(Button button)
+{
+	int x = screenWidth / 2 - MeasureText(button.text, button.fontSize) / 2;
+
+	return x;
+}
+
+int CenteredY(Button button)
+{
+	int y = screenHeight / 2 - button.fontSize / 2;
+
+	return y;
 }
 }
 }
