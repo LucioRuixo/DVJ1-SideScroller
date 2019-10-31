@@ -39,7 +39,7 @@ void Initialize()
 	play.function = Function::ChangeState;
 	play.state = GameState::Gameplay;
 	play.text = "PLAY";
-	play.fontSize = PARAGRAPH_FONT_SIZE;
+	play.fontSize = paragraphFontSize;
 	play.rectangle.width = static_cast<float>(MeasureText(play.text, play.fontSize) * screenWidthScalar);
 	play.rectangle.height = static_cast<float>(play.fontSize * screenHeightScalar);
 	play.rectangle.x = static_cast<float>(CenteredTextX(play.text, play.fontSize) * screenWidthScalar);

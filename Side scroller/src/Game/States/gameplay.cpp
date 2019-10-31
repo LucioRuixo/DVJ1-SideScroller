@@ -19,6 +19,12 @@ void Initialize()
 	enemies::Initialize();
 }
 
+static void CheckCollisions()
+{
+	if (CheckCollisionRecs(player::player.rectangle, enemies::enemy.rectangle))
+		currentGameState = GameOver;
+}
+
 void Update()
 {
 	if (IsKeyPressed(KEY_SPACE))
@@ -28,6 +34,8 @@ void Update()
 	{
 		player::Update();
 		enemies::Update();
+
+		CheckCollisions();
 	}
 }
 
@@ -37,7 +45,7 @@ void Draw()
 	enemies::Draw();
 
 	if (gamePaused)
-		DrawText("Game paused", CenteredTextX("Game paused", PARAGRAPH_FONT_SIZE), screenHeight / 3, PARAGRAPH_FONT_SIZE, RAYWHITE);
+		DrawText("Game paused", CenteredTextX("Game paused", paragraphFontSize), screenHeight / 3, paragraphFontSize, RAYWHITE);
 }
 }
 }

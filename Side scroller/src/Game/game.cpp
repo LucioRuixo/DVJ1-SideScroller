@@ -10,8 +10,6 @@ namespace game
 {
 const int WINDOW_WIDTH = 1280;
 const int WINDOW_HEIGHT = 720;
-const int TITLE_FONT_SIZE = 30;
-const int PARAGRAPH_FONT_SIZE = 20;
 
 GameState currentGameState;
 Vector2 cursor;
@@ -23,6 +21,8 @@ int screenWidth;
 int screenWidthScalar;
 int screenHeight;
 int screenHeightScalar;
+int titleFontSize;
+int paragraphFontSize;
 
 float deltaTime;
 
@@ -38,6 +38,8 @@ static void Initialize()
 	screenWidthScalar = screenWidth / WINDOW_WIDTH;
 	screenHeight = WINDOW_HEIGHT;
 	screenHeightScalar = screenHeight / WINDOW_HEIGHT;
+	titleFontSize = 30 * screenHeightScalar;
+	paragraphFontSize = 20 * screenHeightScalar;
 
 	deltaTime = GetFrameTime();
 

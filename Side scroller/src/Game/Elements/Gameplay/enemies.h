@@ -23,7 +23,6 @@ struct Enemy
 extern Enemy enemy;
 
 void Initialize();
-static void Movement();
 void Update();
 void Draw();
 }
