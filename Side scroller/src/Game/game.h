@@ -36,6 +36,9 @@ extern int screenHeightScalar;
 extern float deltaTime;
 
 void Execute();
+
+int CenteredTextX(const char* text, int fontSize);
+int CenteredTextY(int fontSize);
 }
 
 #endif

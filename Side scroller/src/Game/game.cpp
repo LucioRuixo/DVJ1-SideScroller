@@ -10,6 +10,8 @@ namespace game
 {
 const int WINDOW_WIDTH = 1280;
 const int WINDOW_HEIGHT = 720;
+const int TITLE_FONT_SIZE = 30;
+const int PARAGRAPH_FONT_SIZE = 20;
 
 GameState currentGameState;
 Vector2 cursor;
@@ -114,5 +116,19 @@ void Execute()
 	}
 
 	Close();
+}
+
+int CenteredTextX(const char* text, int fontSize)
+{
+	int x = screenWidth / 2 - MeasureText(text, fontSize) / 2;
+
+	return x;
+}
+
+int CenteredTextY(int fontSize)
+{
+	int y = screenHeight / 2 - fontSize / 2;
+
+	return y;
 }
 }

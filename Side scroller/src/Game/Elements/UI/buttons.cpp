@@ -42,8 +42,8 @@ void Initialize()
 	play.fontSize = PARAGRAPH_FONT_SIZE;
 	play.rectangle.width = static_cast<float>(MeasureText(play.text, play.fontSize) * screenWidthScalar);
 	play.rectangle.height = static_cast<float>(play.fontSize * screenHeightScalar);
-	play.rectangle.x = static_cast<float>(CenteredX(play) * screenWidthScalar);
-	play.rectangle.y = static_cast<float>(CenteredY(play) * screenHeightScalar);
+	play.rectangle.x = static_cast<float>(CenteredTextX(play.text, play.fontSize) * screenWidthScalar);
+	play.rectangle.y = static_cast<float>(CenteredTextY(play.fontSize) * screenHeightScalar);
 }
 }
 
@@ -126,20 +126,6 @@ bool CursorOverButton(Button button)
 	}
 	else
 		return false;
-}
-
-int CenteredX(Button button)
-{
-	int x = screenWidth / 2 - MeasureText(button.text, button.fontSize) / 2;
-
-	return x;
-}
-
-int CenteredY(Button button)
-{
-	int y = screenHeight / 2 - button.fontSize / 2;
-
-	return y;
 }
 }
 }

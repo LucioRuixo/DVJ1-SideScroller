@@ -4,15 +4,16 @@ namespace game
 {
 namespace enemies
 {
+static const int INITIAL_HORIZONTAL_SPEED = 1000;
+
+static const float INITIAL_HS_INCREASE_FACTOR = 0.01f;
+
 const int WIDTH = 100;
 const int HEIGHT = 40;
-const int INITIAL_HORIZONTAL_SPEED = 1000;
 
-const float INITIAL_HS_INCREMENT_FACTOR = 0.01f;
+static float HSIncreaseFactor;
 
 Enemy enemy;
-
-float HSIncrementFactor;
 
 void Initialize()
 {
@@ -23,10 +24,10 @@ void Initialize()
 	enemy.rectangle.y = static_cast<float>(GetRandomValue(0, screenHeight - HEIGHT * screenHeightScalar));
 	enemy.horizontalSpeed = static_cast<float>(INITIAL_HORIZONTAL_SPEED * screenWidthScalar);
 
-	HSIncrementFactor = INITIAL_HS_INCREMENT_FACTOR * screenWidthScalar;
+	HSIncreaseFactor = INITIAL_HS_INCREASE_FACTOR * screenWidthScalar;
 }
 
-void Movement()
+static void Movement()
 {
 	if (enemy.rectangle.x > -enemy.rectangle.width - screenWidthScalar)
 		enemy.rectangle.x -= enemy.horizontalSpeed * deltaTime;
@@ -36,7 +37,7 @@ void Movement()
 		enemy.rectangle.y = static_cast<float>(GetRandomValue(0, screenHeight - HEIGHT * screenHeightScalar));
 	}
 
-	enemy.horizontalSpeed += HSIncrementFactor;
+	enemy.horizontalSpeed += HSIncreaseFactor;
 }
 
 void Update()
