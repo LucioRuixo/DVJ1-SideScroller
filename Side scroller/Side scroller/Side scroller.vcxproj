@@ -30,6 +30,7 @@
     <ClInclude Include="..\src\Game\States\main_menu.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Game\Elements\Gameplay\enemies.cpp" />
     <ClCompile Include="..\src\Game\Elements\Gameplay\player.cpp" />
     <ClCompile Include="..\src\Game\Elements\UI\buttons.cpp" />
     <ClCompile Include="..\src\Game\game.cpp" />

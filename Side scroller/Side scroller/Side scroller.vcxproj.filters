@@ -72,5 +72,8 @@
     <ClCompile Include="..\src\Game\Elements\Gameplay\player.cpp">
       <Filter>Game\Elements\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Game\Elements\Gameplay\enemies.cpp">
+      <Filter>Game\Elements\Gameplay</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

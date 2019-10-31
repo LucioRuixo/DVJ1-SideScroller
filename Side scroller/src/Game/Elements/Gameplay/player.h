@@ -14,6 +14,7 @@ extern const int VERTICAL_SPEED;
 
 struct Player
 {
+	Color color;
 	Rectangle rectangle;
 
 	int horizontalSpeed;
