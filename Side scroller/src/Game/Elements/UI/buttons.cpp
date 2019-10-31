@@ -8,34 +8,16 @@ namespace game
 {
 namespace buttons
 {
+Button credits;
 Button exit;
-Button fullScreen_;
 Button pause;
 Button play;
 Button return_;
 
 namespace main_menu
 {
-float buttonsX;
-
 void Initialize()
 {
-	buttonsX = static_cast<float>(screenWidth) / 6.0f;
-
-	exit.function = Function::ExitGame;
-	exit.rectangle.width = 4.0f * screenWidthScalar;
-	exit.rectangle.height = 4.0f * screenHeightScalar;
-	exit.rectangle.x = buttonsX;
-	exit.rectangle.y = (static_cast<float>(screenHeight) / 3.0f) * 2 + 40;
-	exit.text = "Exit";
-
-	fullScreen_.function = Function::ActivateFullscreen;
-	fullScreen_.rectangle.width = 10.0f * screenWidthScalar;
-	fullScreen_.rectangle.height = 4.0f * screenHeightScalar;
-	fullScreen_.rectangle.x = screenWidth - fullScreen_.rectangle.width - 1.0f * screenWidthScalar;
-	fullScreen_.rectangle.y = 1.0f * screenHeightScalar;
-	fullScreen_.text = "Fullscreen";
-
 	play.function = Function::ChangeState;
 	play.state = GameState::Gameplay;
 	play.text = "PLAY";
@@ -43,7 +25,24 @@ void Initialize()
 	play.rectangle.width = static_cast<float>(MeasureText(play.text, play.fontSize) * screenWidthScalar);
 	play.rectangle.height = static_cast<float>(play.fontSize * screenHeightScalar);
 	play.rectangle.x = static_cast<float>(CenteredTextX(play.text, play.fontSize) * screenWidthScalar);
-	play.rectangle.y = static_cast<float>(CenteredTextY(play.fontSize) * screenHeightScalar);
+	play.rectangle.y = static_cast<float>(((screenHeight / 9) * 4) * screenHeightScalar);
+
+	credits.function = Function::ChangeState;
+	credits.state = GameState::CreditsScreen;
+	credits.text = "Credits";
+	credits.fontSize = paragraphFontSize;
+	credits.rectangle.width = static_cast<float>(MeasureText(credits.text, credits.fontSize) * screenWidthScalar);
+	credits.rectangle.height = static_cast<float>(credits.fontSize * screenHeightScalar);
+	credits.rectangle.x = static_cast<float>(CenteredTextX(credits.text, credits.fontSize) * screenWidthScalar);
+	credits.rectangle.y = static_cast<float>(((screenHeight / 9) * 5) * screenHeightScalar);
+
+	exit.function = Function::ExitGame;
+	exit.text = "Exit";
+	exit.fontSize = paragraphFontSize;
+	exit.rectangle.width = static_cast<float>(MeasureText(exit.text, exit.fontSize) * screenWidthScalar);
+	exit.rectangle.height = static_cast<float>(exit.fontSize * screenHeightScalar);
+	exit.rectangle.x = static_cast<float>(CenteredTextX(exit.text, exit.fontSize) * screenWidthScalar);
+	exit.rectangle.y = static_cast<float>(((screenHeight / 9) * 6) * screenHeightScalar);
 }
 }
 

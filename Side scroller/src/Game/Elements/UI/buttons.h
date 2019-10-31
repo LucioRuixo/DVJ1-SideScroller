@@ -29,17 +29,14 @@ struct Button
 	int fontSize;
 };
 
-extern Button continue_;
+extern Button credits;
 extern Button exit;
 extern Button pause;
-
 extern Button play;
 extern Button return_;
 
 namespace main_menu
 {
-extern float buttonsX;
-
 void Initialize();
 }
 namespace gameplay
