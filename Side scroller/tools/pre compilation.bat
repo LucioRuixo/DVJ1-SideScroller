@@ -1,1 +1,2 @@
-copy %1 %2
+copy %2 %1
+xcopy %3 %1 /s /y

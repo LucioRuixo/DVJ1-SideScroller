@@ -131,7 +131,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>"$(SolutionDir)tools\pre compilation.bat" "$(SolutionDir)lib\raylib-2.5.0-Win32-msvc15\bin\raylib.dll" "$(OutDir)"</Command>
+      <Command>"$(SolutionDir)tools\pre compilation.bat" "$(OutDir)" "$(SolutionDir)lib\raylib-2.5.0-Win32-msvc15\bin\raylib.dll" "$(SolutionDir)res\assets"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -178,7 +178,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>"$(SolutionDir)tools\pre compilation.bat" "$(SolutionDir)lib\raylib-2.5.0-Win32-msvc15\bin\raylib.dll" "$(OutDir)"</Command>
+      <Command>"$(SolutionDir)tools\pre compilation.bat" "$(OutDir)" "$(SolutionDir)lib\raylib-2.5.0-Win32-msvc15\bin\raylib.dll" "$(SolutionDir)res\assets"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
