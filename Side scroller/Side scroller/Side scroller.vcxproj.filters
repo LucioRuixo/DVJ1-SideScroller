@@ -48,6 +48,9 @@
     <ClInclude Include="..\src\Game\Elements\Gameplay\enemies.h">
       <Filter>Game\Elements\Gameplay</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Game\Elements\Gameplay\background.h">
+      <Filter>Game\Elements\Gameplay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp" />
@@ -73,6 +76,9 @@
       <Filter>Game\Elements\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Game\Elements\Gameplay\enemies.cpp">
+      <Filter>Game\Elements\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Elements\Gameplay\background.cpp">
       <Filter>Game\Elements\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>

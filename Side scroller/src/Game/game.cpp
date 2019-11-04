@@ -98,6 +98,7 @@ static void Draw()
 
 static void Close()
 {
+	gameplay::Close();
 	CloseWindow();
 }
 

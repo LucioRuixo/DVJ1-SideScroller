@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\raylib-2.5.0-Win32-msvc15\include\raylib.h" />
+    <ClInclude Include="..\src\Game\Elements\Gameplay\background.h" />
     <ClInclude Include="..\src\Game\Elements\Gameplay\enemies.h" />
     <ClInclude Include="..\src\Game\Elements\Gameplay\player.h" />
     <ClInclude Include="..\src\Game\Elements\UI\buttons.h" />
@@ -30,6 +31,7 @@
     <ClInclude Include="..\src\Game\States\main_menu.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Game\Elements\Gameplay\background.cpp" />
     <ClCompile Include="..\src\Game\Elements\Gameplay\enemies.cpp" />
     <ClCompile Include="..\src\Game\Elements\Gameplay\player.cpp" />
     <ClCompile Include="..\src\Game\Elements\UI\buttons.cpp" />
