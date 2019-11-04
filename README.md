@@ -1,1 +1,1 @@
-﻿﻿﻿# GRADIUS by Lucio RuixoThis is a Gradius-like game developed in C++ using the RayLib library.- Programmer: Lucio Ruixo- Current versión: 0.1
+﻿﻿﻿﻿﻿# GRADIUS by Lucio RuixoThis is a Gradius-like game developed in C++ using the RayLib library.- Programmer: Lucio Ruixo- Current versión: 0.2
