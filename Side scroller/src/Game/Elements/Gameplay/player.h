@@ -14,8 +14,10 @@ extern const int VERTICAL_SPEED;
 
 struct Player
 {
-	Color color;
+	Image images[2];
 	Rectangle rectangle;
+	Texture2D currentTexture;
+	Texture2D textures[2];
 
 	int horizontalSpeed;
 	int verticalSpeed;
@@ -27,6 +29,7 @@ void Initialize();
 void Input();
 void Update();
 void Draw();
+void Close();
 }
 }
 

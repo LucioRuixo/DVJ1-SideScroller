@@ -59,6 +59,7 @@ void Draw()
 void Close()
 {
 	background::Close();
+	player::Close();
 }
 }
 }

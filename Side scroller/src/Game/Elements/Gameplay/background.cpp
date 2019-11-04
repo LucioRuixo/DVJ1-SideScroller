@@ -33,6 +33,7 @@ void InitializeLayer2()
 {
 	if (!texturesLoaded)
 	{
+
 		planets[0].image = LoadImage("images/planets/0.png");
 		planets[1].image = LoadImage("images/planets/1.png");
 		planets[2].image = LoadImage("images/planets/2.png");
@@ -41,7 +42,10 @@ void InitializeLayer2()
 
 		for (int i = 0; i < PLANETS_AMOUNT; i++)
 		{
+			planets[i].color = {175, 175, 175, 255};
+
 			ImageResize(&planets[i].image, PLANETS_SIZE * screenWidthScalar, PLANETS_SIZE * screenWidthScalar);
+
 			planets[i].texture = LoadTextureFromImage(planets[i].image);
 		}
 
@@ -106,7 +110,7 @@ void DrawLayer2()
 {
 	for (int i = 0; i < PLANETS_AMOUNT; i++)
 	{
-		DrawTextureV(planets[i].texture, planets[i].position, {230, 230, 230, 230});
+		DrawTextureV(planets[i].texture, planets[i].position, planets[i].color);
 	}
 }
 

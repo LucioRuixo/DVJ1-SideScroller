@@ -17,6 +17,7 @@ extern const float STARS_SPEED;
 
 struct Planet
 {
+	Color color;
 	Image image;
 	Texture2D texture;
 	Vector2 position;
