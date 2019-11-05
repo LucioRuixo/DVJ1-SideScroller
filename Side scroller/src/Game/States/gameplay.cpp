@@ -12,14 +12,30 @@ namespace gameplay
 {
 static bool gamePaused;
 
+Music music;
+
 void Initialize()
 {
+	music = LoadMusicStream("audio/music/music.ogg");
+
 	gamePaused = false;
 
-	background::InitializeLayer1();
-	background::InitializeLayer2();
+	background::Initialize();
 	player::Initialize();
 	enemies::Initialize();
+}
+
+static void CheckInput()
+{
+	if (IsKeyPressed(KEY_M))
+		IsMusicPlaying(music) ? PauseMusicStream(music) : ResumeMusicStream(music);
+
+	if (IsKeyPressed(KEY_SPACE))
+	{
+		gamePaused = !gamePaused;
+
+		PlaySound(buttonSFX);
+	}
 }
 
 static void CheckCollisions()
@@ -27,14 +43,17 @@ static void CheckCollisions()
 	if (CheckCollisionRecs(player::player.rectangle, enemies::enemy.rectangle))
 	{
 		currentGameState = GameOver;
-		Initialize();
+
+		if (IsMusicPlaying(music))
+			StopMusicStream(music);
 	}
 }
 
 void Update()
 {
-	if (IsKeyPressed(KEY_SPACE))
-		gamePaused = !gamePaused;
+	UpdateMusicStream(music);
+
+	CheckInput();
 
 	if (!gamePaused)
 	{
@@ -58,8 +77,10 @@ void Draw()
 
 void Close()
 {
-	background::Close();
 	player::Close();
+	background::Close();
+
+	UnloadMusicStream(music);
 }
 }
 }

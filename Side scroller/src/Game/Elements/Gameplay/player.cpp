@@ -41,8 +41,6 @@ void Initialize()
 
 static void UpdateAnimation()
 {
-	cout << "Timer: " << animationTimer << ", Target: " << animationTimerTarget << ", ID: " << player.currentTexture.id << endl;
-
 	if (animationTimer > animationTimerTarget)
 	{
 		player.currentTexture.id == player.textures[0].id ? player.currentTexture = player.textures[1] : player.currentTexture = player.textures[0];
@@ -50,7 +48,7 @@ static void UpdateAnimation()
 	}
 }
 
-void Input()
+static void CheckInput()
 {
 	if (IsKeyDown(KEY_UP) && player.rectangle.y > 0)
 		player.rectangle.y -= static_cast<float>(player.verticalSpeed * deltaTime);
@@ -64,7 +62,7 @@ void Update()
 	animationTimer += GetFrameTime();
 
 	UpdateAnimation();
-	Input();
+	CheckInput();
 }
 
 void Draw()
@@ -74,7 +72,7 @@ void Draw()
 
 void Close()
 {
-	for (int i = 0; i < 2; i++)
+	for (int i = 1; i >= 0; i--)
 	{
 		UnloadTexture(player.textures[i]);
 		UnloadImage(player.images[i]);

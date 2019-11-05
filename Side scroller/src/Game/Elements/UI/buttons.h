@@ -14,6 +14,7 @@ enum Function
 	ActivateFullscreen,
 	ChangeState,
 	ExitGame,
+	Play
 };
 
 struct Button
@@ -36,10 +37,6 @@ extern Button play;
 extern Button return_;
 
 namespace main_menu
-{
-void Initialize();
-}
-namespace gameplay
 {
 void Initialize();
 }

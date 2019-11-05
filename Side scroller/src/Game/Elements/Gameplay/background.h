@@ -1,5 +1,6 @@
 #ifndef BACKGROUND_H
 #define BACKGROUND_H
+
 #include "raylib.h"
 
 namespace game
@@ -33,14 +34,8 @@ struct Star
 extern Planet planets[];
 extern Star stars[];
 
-void InitializeLayer1();
-void InitializeLayer2();
 void Initialize();
-void UpdateLayer1();
-void UpdateLayer2();
 void Update();
-void DrawLayer1();
-void DrawLayer2();
 void Draw();
 void Close();
 }

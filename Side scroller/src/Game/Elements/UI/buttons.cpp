@@ -2,7 +2,10 @@
 
 #include "raylib.h"
 
-#include "game.h"
+#include "States/main_menu.h"
+#include "States/gameplay.h"
+#include "Elements/Gameplay/enemies.h"
+#include "Elements/Gameplay/player.h"
 
 namespace game
 {
@@ -10,53 +13,37 @@ namespace buttons
 {
 Button credits;
 Button exit;
-Button pause;
 Button play;
-Button return_;
 
 namespace main_menu
 {
 void Initialize()
 {
-	play.function = Function::ChangeState;
-	play.state = GameState::Gameplay;
+	play.function = Play;
+	play.state = Gameplay;
 	play.text = "PLAY";
 	play.fontSize = paragraphFontSize;
 	play.rectangle.width = static_cast<float>(MeasureText(play.text, play.fontSize) * screenWidthScalar);
 	play.rectangle.height = static_cast<float>(play.fontSize * screenHeightScalar);
 	play.rectangle.x = static_cast<float>(CenteredTextX(play.text, play.fontSize) * screenWidthScalar);
-	play.rectangle.y = static_cast<float>(((screenHeight / 9) * 4) * screenHeightScalar);
+	play.rectangle.y = static_cast<float>(GetTextY(game::main_menu::ROWS_AMOUNT, 10));
 
-	credits.function = Function::ChangeState;
-	credits.state = GameState::CreditsScreen;
-	credits.text = "Credits";
+	credits.function = ChangeState;
+	credits.state = CreditsScreen;
+	credits.text = "CREDITS";
 	credits.fontSize = paragraphFontSize;
 	credits.rectangle.width = static_cast<float>(MeasureText(credits.text, credits.fontSize) * screenWidthScalar);
 	credits.rectangle.height = static_cast<float>(credits.fontSize * screenHeightScalar);
 	credits.rectangle.x = static_cast<float>(CenteredTextX(credits.text, credits.fontSize) * screenWidthScalar);
-	credits.rectangle.y = static_cast<float>(((screenHeight / 9) * 5) * screenHeightScalar);
+	credits.rectangle.y = static_cast<float>(GetTextY(game::main_menu::ROWS_AMOUNT, 11));
 
-	exit.function = Function::ExitGame;
-	exit.text = "Exit";
+	exit.function = ExitGame;
+	exit.text = "EXIT";
 	exit.fontSize = paragraphFontSize;
 	exit.rectangle.width = static_cast<float>(MeasureText(exit.text, exit.fontSize) * screenWidthScalar);
 	exit.rectangle.height = static_cast<float>(exit.fontSize * screenHeightScalar);
 	exit.rectangle.x = static_cast<float>(CenteredTextX(exit.text, exit.fontSize) * screenWidthScalar);
-	exit.rectangle.y = static_cast<float>(((screenHeight / 9) * 6) * screenHeightScalar);
-}
-}
-
-namespace game_over
-{
-void Initialize()
-{
-	return_.function = Function::ChangeState;
-	return_.state = GameState::MainMenu;
-	return_.rectangle.width = 9.0f * screenWidthScalar;
-	return_.rectangle.height = 3.0f * screenHeightScalar;
-	return_.rectangle.x = 1.0f * screenWidthScalar;
-	return_.rectangle.y = 1.0f * screenHeightScalar;
-	return_.text = "< Return";
+	exit.rectangle.y = static_cast<float>(GetTextY(game::main_menu::ROWS_AMOUNT, 12));
 }
 }
 
@@ -76,17 +63,17 @@ void CheckPressing(Button button)
 {
 	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 	{
-		//PlaySound(buttonSFX);
+		PlaySound(buttonSFX);
 
 		switch (button.function)
 		{
-		case Function::ChangeState:
+		case ChangeState:
 			currentGameState = button.state;
 			break;
-		case Function::ExitGame:
+		case ExitGame:
 			gameShouldClose = true;
 			break;
-		case Function::ActivateFullscreen:
+		case ActivateFullscreen:
 			if (!fullscreenOn)
 			{
 				screenWidth = GetMonitorWidth(0);
@@ -99,6 +86,12 @@ void CheckPressing(Button button)
 				screenHeight = WINDOW_HEIGHT;
 				ToggleFullscreen();
 			}
+			break;
+		case Play:
+			player::Initialize();
+			enemies::Initialize();
+			PlayMusicStream(gameplay::music);
+			currentGameState = button.state;
 			break;
 		}
 	}

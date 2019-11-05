@@ -12,15 +12,13 @@ const int STARS_AMOUNT = 100;
 const int STARS_MIN_RADIUS = 1;
 const int STARS_MAX_RADIUS = 3;
 
-static bool texturesLoaded;
-
 const float PLANETS_SPEED = 0.1f;;
 const float STARS_SPEED = 0.05f;
 
 Planet planets[PLANETS_AMOUNT];
 Star stars[STARS_AMOUNT];
 
-void InitializeLayer1()
+static void InitializeLayer1()
 {
 	for (int i = 0; i < STARS_AMOUNT; i++)
 	{
@@ -29,27 +27,21 @@ void InitializeLayer1()
 	}
 }
 
-void InitializeLayer2()
+static void InitializeLayer2()
 {
-	if (!texturesLoaded)
+	planets[0].image = LoadImage("images/planets/0.png");
+	planets[1].image = LoadImage("images/planets/1.png");
+	planets[2].image = LoadImage("images/planets/2.png");
+	planets[3].image = LoadImage("images/planets/3.png");
+	planets[4].image = LoadImage("images/planets/4.png");
+
+	for (int i = 0; i < PLANETS_AMOUNT; i++)
 	{
+		planets[i].color = {175, 175, 175, 255};
 
-		planets[0].image = LoadImage("images/planets/0.png");
-		planets[1].image = LoadImage("images/planets/1.png");
-		planets[2].image = LoadImage("images/planets/2.png");
-		planets[3].image = LoadImage("images/planets/3.png");
-		planets[4].image = LoadImage("images/planets/4.png");
+		ImageResize(&planets[i].image, PLANETS_SIZE * screenWidthScalar, PLANETS_SIZE * screenWidthScalar);
 
-		for (int i = 0; i < PLANETS_AMOUNT; i++)
-		{
-			planets[i].color = {175, 175, 175, 255};
-
-			ImageResize(&planets[i].image, PLANETS_SIZE * screenWidthScalar, PLANETS_SIZE * screenWidthScalar);
-
-			planets[i].texture = LoadTextureFromImage(planets[i].image);
-		}
-
-		texturesLoaded = true;
+		planets[i].texture = LoadTextureFromImage(planets[i].image);
 	}
 
 	for (int i = 0; i < PLANETS_AMOUNT; i++)
@@ -60,13 +52,11 @@ void InitializeLayer2()
 
 void Initialize()
 {
-	texturesLoaded = false;
-
 	InitializeLayer1();
 	InitializeLayer2();
 }
 
-void UpdateLayer1()
+static void UpdateLayer1()
 {
 	for (int i = 0; i < STARS_AMOUNT; i++)
 	{
@@ -77,7 +67,7 @@ void UpdateLayer1()
 	}
 }
 
-void UpdateLayer2()
+static void UpdateLayer2()
 {
 	for (int i = 0; i < PLANETS_AMOUNT; i++)
 	{
@@ -98,7 +88,7 @@ void Update()
 	UpdateLayer2();
 }
 
-void DrawLayer1()
+static void DrawLayer1()
 {
 	for (int i = 0; i < STARS_AMOUNT; i++)
 	{
@@ -106,7 +96,7 @@ void DrawLayer1()
 	}
 }
 
-void DrawLayer2()
+static void DrawLayer2()
 {
 	for (int i = 0; i < PLANETS_AMOUNT; i++)
 	{
@@ -122,7 +112,7 @@ void Draw()
 
 void Close()
 {
-	for (int i = 0; i < PLANETS_AMOUNT; i++)
+	for (int i = PLANETS_AMOUNT - 1; i >= 0; i--)
 	{
 		UnloadTexture(planets[i].texture);
 		UnloadImage(planets[i].image);

@@ -21,6 +21,7 @@ enum GameState
 };
 
 extern GameState currentGameState;
+extern Sound buttonSFX;
 extern Vector2 cursor;
 
 extern bool fullscreenOn;
@@ -39,6 +40,7 @@ void Execute();
 
 int CenteredTextX(const char* text, int fontSize);
 int CenteredTextY(int fontSize);
+int GetTextY(const int ROWS_AMOUNT, int rowNumber);
 }
 
 #endif

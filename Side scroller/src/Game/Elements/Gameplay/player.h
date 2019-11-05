@@ -26,7 +26,6 @@ struct Player
 extern Player player;
 
 void Initialize();
-void Input();
 void Update();
 void Draw();
 void Close();

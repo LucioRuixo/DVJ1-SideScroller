@@ -5,6 +5,8 @@ namespace game
 {
 namespace main_menu
 {
+extern const int ROWS_AMOUNT;
+
 void Update();
 void Draw();
 }

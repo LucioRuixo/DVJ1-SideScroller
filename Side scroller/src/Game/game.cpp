@@ -4,6 +4,7 @@
 #include "States/credits_screen.h"
 #include "States/gameplay.h"
 #include "States/game_over.h"
+#include "Elements/Gameplay/background.h"
 #include "Elements/UI/buttons.h"
 
 namespace game
@@ -12,6 +13,7 @@ const int WINDOW_WIDTH = 1280;
 const int WINDOW_HEIGHT = 720;
 
 GameState currentGameState;
+Sound buttonSFX;
 Vector2 cursor;
 
 bool fullscreenOn;
@@ -21,14 +23,23 @@ int screenWidth;
 int screenWidthScalar;
 int screenHeight;
 int screenHeightScalar;
+int gradiusFontSize;
 int titleFontSize;
 int paragraphFontSize;
 
 float deltaTime;
 
+static void InitializeAudio()
+{
+	InitAudioDevice();
+
+	buttonSFX = LoadSound("audio/SFX/buttonSFX.ogg");
+}
+
 static void Initialize()
 {
 	currentGameState = MainMenu;
+
 	cursor = GetMousePosition();
 
 	fullscreenOn = false;
@@ -38,15 +49,17 @@ static void Initialize()
 	screenWidthScalar = screenWidth / WINDOW_WIDTH;
 	screenHeight = WINDOW_HEIGHT;
 	screenHeightScalar = screenHeight / WINDOW_HEIGHT;
-	titleFontSize = 30 * screenHeightScalar;
+	titleFontSize = 120 * screenHeightScalar;
 	paragraphFontSize = 20 * screenHeightScalar;
 
 	deltaTime = GetFrameTime();
 
 	InitWindow(screenWidth, screenHeight, "GRADIUS!");
-	buttons::main_menu::Initialize();
-	//credits_screen::Initialize();
+	SetExitKey(KEY_E);
+	InitializeAudio();
+	credits_screen::Initialize();
 	gameplay::Initialize();
+	buttons::main_menu::Initialize();
 }
 
 static void Update()
@@ -96,9 +109,18 @@ static void Draw()
 	EndDrawing();
 }
 
+static void CloseAudio()
+{
+
+	UnloadSound(buttonSFX);
+
+	CloseAudioDevice();
+}
+
 static void Close()
 {
 	gameplay::Close();
+	CloseAudio();
 	CloseWindow();
 }
 
@@ -133,5 +155,10 @@ int CenteredTextY(int fontSize)
 	int y = screenHeight / 2 - fontSize / 2;
 
 	return y;
+}
+
+int GetTextY(const int ROWS_AMOUNT, int rowNumber)
+{
+	return ((screenHeight / ROWS_AMOUNT) * rowNumber) - paragraphFontSize / 2;
 }
 }

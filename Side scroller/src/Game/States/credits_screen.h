@@ -5,6 +5,7 @@ namespace game
 {
 namespace credits_screen
 {
+void Initialize();
 void Update();
 void Draw();
 }
