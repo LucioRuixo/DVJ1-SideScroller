@@ -6,29 +6,35 @@ namespace game
 {
 namespace background
 {
-const int PLANETS_AMOUNT = 5;
-const int PLANETS_SIZE = 150;
-const int STARS_AMOUNT = 100;
-const int STARS_MIN_RADIUS = 1;
-const int STARS_MAX_RADIUS = 3;
+static const Color PLANETS_COLOR = { 175, 175, 175, 255 };
 
-const float PLANETS_SPEED = 0.1f;;
-const float STARS_SPEED = 0.05f;
+static const int PLANETS_AMOUNT = 5;
+static const int STARS_AMOUNT = 100;
 
 Planet planets[PLANETS_AMOUNT];
 Star stars[STARS_AMOUNT];
 
+static int planetsSize;
+static int starsMinRadius;
+static int starsMaxRadius;
+
 static void InitializeLayer1()
 {
+	starsMinRadius = 1 * screenWidthScalar;
+	starsMaxRadius = 3 * screenWidthScalar;
+
 	for (int i = 0; i < STARS_AMOUNT; i++)
 	{
 		stars[i].position = { static_cast<float>(GetRandomValue(0, screenWidth)), static_cast<float>(GetRandomValue(0, screenHeight)) };
-		stars[i].radius = static_cast<float>(GetRandomValue(STARS_MIN_RADIUS, STARS_MAX_RADIUS) * screenWidthScalar);
+		stars[i].radius = GetRandomValue(starsMinRadius, starsMaxRadius) * screenWidthScalar;
+		stars[i].speed = 90 * screenWidthScalar;
 	}
 }
 
 static void InitializeLayer2()
 {
+	planetsSize = 150 * screenWidthScalar;
+
 	planets[0].image = LoadImage("images/planets/0.png");
 	planets[1].image = LoadImage("images/planets/1.png");
 	planets[2].image = LoadImage("images/planets/2.png");
@@ -37,16 +43,11 @@ static void InitializeLayer2()
 
 	for (int i = 0; i < PLANETS_AMOUNT; i++)
 	{
-		planets[i].color = {175, 175, 175, 255};
-
-		ImageResize(&planets[i].image, PLANETS_SIZE * screenWidthScalar, PLANETS_SIZE * screenWidthScalar);
-
+		planets[i].color = PLANETS_COLOR;
+		ImageResize(&planets[i].image, planetsSize, planetsSize);
 		planets[i].texture = LoadTextureFromImage(planets[i].image);
-	}
-
-	for (int i = 0; i < PLANETS_AMOUNT; i++)
-	{
 		planets[i].position = { static_cast<float>(GetRandomValue(0, screenWidth)), static_cast<float>(GetRandomValue(0, screenHeight)) };
+		planets[i].speed = 175 * screenWidthScalar;
 	}
 }
 
@@ -60,10 +61,10 @@ static void UpdateLayer1()
 {
 	for (int i = 0; i < STARS_AMOUNT; i++)
 	{
-		stars[i].position.x -= STARS_SPEED * screenWidthScalar;
+		stars[i].position.x -= static_cast<float>(stars[i].speed) * deltaTime;
 
 		if (stars[i].position.x + stars[i].radius < 0)
-			stars[i].position.x = screenWidth + stars[i].radius;
+			stars[i].position.x = static_cast<float>(screenWidth + stars[i].radius);
 	}
 }
 
@@ -71,9 +72,9 @@ static void UpdateLayer2()
 {
 	for (int i = 0; i < PLANETS_AMOUNT; i++)
 	{
-		planets[i].position.x -= PLANETS_SPEED * screenWidthScalar;
+		planets[i].position.x -= static_cast<float>(planets[i].speed) * deltaTime;
 
-		if (planets[i].position.x + PLANETS_SIZE < 0)
+		if (planets[i].position.x + planetsSize < 0)
 		{
 			planets[i].position.x = { static_cast<float>(screenWidth + GetRandomValue(0, screenWidth / 3)) };
 			planets[i].position.y = { static_cast<float>(GetRandomValue(0, screenHeight)) };
@@ -92,7 +93,7 @@ static void DrawLayer1()
 {
 	for (int i = 0; i < STARS_AMOUNT; i++)
 	{
-		DrawCircle(static_cast<int>(stars[i].position.x), static_cast<int>(stars[i].position.y), stars[i].radius, RAYWHITE);
+		DrawCircle(static_cast<int>(stars[i].position.x), static_cast<int>(stars[i].position.y), static_cast<float>(stars[i].radius), RAYWHITE);
 	}
 }
 

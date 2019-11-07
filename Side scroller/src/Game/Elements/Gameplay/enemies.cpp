@@ -8,8 +8,8 @@ static const int INITIAL_HORIZONTAL_SPEED = 1000;
 
 static const float INITIAL_HS_INCREASE_FACTOR = 0.01f;
 
-const int WIDTH = 100;
-const int HEIGHT = 40;
+static const int WIDTH = 100;
+static const int HEIGHT = 40;
 
 static float HSIncreaseFactor;
 

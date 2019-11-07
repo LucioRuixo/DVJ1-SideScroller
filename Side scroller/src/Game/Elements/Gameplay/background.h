@@ -7,28 +7,22 @@ namespace game
 {
 namespace background
 {
-extern const int PLANETS_AMOUNT;
-extern const int PLANETS_SIZE;
-extern const int STARS_AMOUNT;
-extern const int STARS_MIN_RADIUS;
-extern const int STARS_MAX_RADIUS;
-
-extern const float PLANETS_SPEED;
-extern const float STARS_SPEED;
-
 struct Planet
 {
 	Color color;
 	Image image;
 	Texture2D texture;
 	Vector2 position;
+
+	int speed;
 };
 
 struct Star
 {
 	Vector2 position;
 
-	float radius;
+	int radius;
+	int speed;
 };
 
 extern Planet planets[];

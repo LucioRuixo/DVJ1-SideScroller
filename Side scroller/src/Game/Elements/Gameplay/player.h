@@ -7,10 +7,12 @@ namespace game
 {
 namespace player
 {
-extern const int WIDTH;
-extern const int HEIGHT;
-extern const int HORIZONTAL_SPEED;
-extern const int VERTICAL_SPEED;
+struct Bullet
+{
+	Image images[2];
+	Rectangle rectangle;
+	Texture2D textures[2];
+};
 
 struct Player
 {
@@ -24,6 +26,7 @@ struct Player
 };
 
 extern Player player;
+extern Bullet bullets[];
 
 void Initialize();
 void Update();

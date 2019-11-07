@@ -6,15 +6,17 @@ namespace game
 {
 namespace player
 {
-const int WIDTH = 40;
-const int HEIGHT = 113;
-const int HORIZONTAL_SPEED = 20;
-const int VERTICAL_SPEED = 750;
+static const int WIDTH = 40;
+static const int HEIGHT = 113;
+static const int HORIZONTAL_SPEED = 20;
+static const int VERTICAL_SPEED = 750;
+static const int BULLET_SPEED = 1;
 
 static float animationTimer;
 static float animationTimerTarget;
 
 Player player;
+Bullet bullets[];
 
 void Initialize()
 {
